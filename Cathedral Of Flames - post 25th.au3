@@ -7,6 +7,7 @@
 #include <ComboConstants.au3>
 #include <GuiEdit.au3>
 #include <MsgBoxConstants.au3>
+#include <Date.au3>
 
 Global $DiessaChalice = 24353
 Global $GoldenRinRelic = 24354
@@ -26,6 +27,7 @@ Global $TimerMin = 0
 Global $TimerMax = 0
 Global $TimerAvg = 0
 Global $TimerSum = 0
+Global $starttime
 
 $aCharName = ""
 
@@ -52,6 +54,8 @@ $Label2 = GUICtrlCreateLabel("Pause", 50, 18, 152, 25, $SS_CENTER)
 $Checkbox = GUICtrlCreateCheckbox("Disable Rendering", 8, 98, 129, 17)
 	GUICtrlSetState(-1, 0)
 	GUICtrlSetOnEvent(-1, "ToggleRendering")
+GUICtrlCreateLabel("Starttime:", 180,98, 129, 17)
+Global Const $StartTimeLabel = GUICtrlCreateLabel($starttime, 252, 98, 129, 17)
 GUICtrlCreateLabel("SuccRuns:", 8,130, 80, 17)
 Global Const $RunsLabel = GUICtrlCreateLabel($success, 80, 130, 50, 17)
 GUICtrlCreateLabel("Fails:", 8,150, 80, 17)
@@ -95,6 +99,8 @@ EndFunc
 While 1
 Sleep(GetPing() + 100)
 If $boolrun Then
+   $starttime = _Now()
+   GUICtrlSetData($StartTimeLabel, $starttime)
    main()
 EndIf
 WEnd
