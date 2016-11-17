@@ -28,6 +28,13 @@ Global $TimerMax = 0
 Global $TimerAvg = 0
 Global $TimerSum = 0
 Global $starttime
+Global $starttimecalc
+Global $successhour = 0
+Global $failshour = 0
+Global $diessahour = 0
+Global $rinhour = 0
+Global $charhour = 0
+Global $hourcounter = 0
 
 $aCharName = ""
 
@@ -58,14 +65,24 @@ GUICtrlCreateLabel("Starttime:", 180,98, 129, 17)
 Global Const $StartTimeLabel = GUICtrlCreateLabel($starttime, 252, 98, 129, 17)
 GUICtrlCreateLabel("SuccRuns:", 8,130, 80, 17)
 Global Const $RunsLabel = GUICtrlCreateLabel($success, 80, 130, 50, 17)
+GUICtrlCreateLabel("/hour:", 180,130, 129, 17)
+Global Const $RunsPerHourLabel = GUICtrlCreateLabel($successhour, 252, 130, 129, 17)
 GUICtrlCreateLabel("Fails:", 8,150, 80, 17)
 Global Const $FailsLabel = GUICtrlCreateLabel($fails, 80, 150, 50, 17)
+GUICtrlCreateLabel("/hour:", 180,150, 129, 17)
+Global Const $FailsPerHourLabel = GUICtrlCreateLabel($failshour, 252, 150, 129, 17)
 GUICtrlCreateLabel("Diessa:", 8,170, 80, 17)
 Global Const $DiessaLabel = GUICtrlCreateLabel($diessa, 80, 170, 50, 17)
+GUICtrlCreateLabel("/hour:", 180,170, 129, 17)
+Global Const $DiessaPerHourLabel = GUICtrlCreateLabel($diessahour, 252, 170, 129, 17)
 GUICtrlCreateLabel("Rin:", 8,190, 80, 17)
 Global Const $RinLabel = GUICtrlCreateLabel($rin, 80, 190, 50, 17)
+GUICtrlCreateLabel("/hour:", 180,190, 129, 17)
+Global Const $RinPerHourLabel = GUICtrlCreateLabel($rinhour, 252, 190, 129, 17)
 GUICtrlCreateLabel("Char:", 8,210, 80, 17)
 Global Const $CharLabel = GUICtrlCreateLabel($char, 80, 210, 50, 17)
+GUICtrlCreateLabel("/hour:", 180,210, 129, 17)
+Global Const $CharPerHourLabel = GUICtrlCreateLabel($charhour, 252, 210, 129, 17)
 GUICtrlCreateLabel("LastTime:", 8,230,80,17)
 Global Const $TimerLabel = GUICtrlCreateLabel($Timer, 80, 230, 50, 17)
 GUICtrlCreateLabel("TimeMin:", 8,250,80,17)
@@ -88,6 +105,9 @@ Switch (@GUI_CtrlId)
 	Case $bRun
 		$boolRun = Not $boolRun
 		If $boolRun Then
+			$starttime = _Now()
+			$starttimecalc = _NowCalc()
+			GUICtrlSetData($StartTimeLabel, $starttime)
 			GUICtrlSetData($bRun, "Stop")
 		EndIf
 	Case $GUI_EVENT_CLOSE
@@ -99,8 +119,6 @@ EndFunc
 While 1
 Sleep(GetPing() + 100)
 If $boolrun Then
-   $starttime = _Now()
-   GUICtrlSetData($StartTimeLabel, $starttime)
    main()
 EndIf
 WEnd
@@ -170,6 +188,7 @@ Kill()
 Sleep(1000)
 $success += 1
 UpdateTimer()
+UpdatePerHour()
 GUICtrlSetData($RunsLabel, $success)
 EndFunc
 
@@ -199,6 +218,37 @@ Else
 EndIf
 EndFunc
 
+
+Func UpdatePerHour()
+   Local $currenttime = _NowCalc()
+   Local $minutesdiff = _DateDiff('n', $starttimecalc, $currenttime)
+   If ($minutesdiff-(60*$hourcounter)) >= 60 Then
+	  $hourcounter += 1
+   EndIf
+   If $hourcounter <> 0 Then
+	  $successhour = $success/$hourcounter
+	  $failshour = $fails/$hourcounter
+	  $diessahour = $diessa/$hourcounter
+	  $rinhour = $rin/$hourcounter
+	  $charhour = $char/$hourcounter
+	  GUICtrlSetData($RunsPerHourLabel, $successhour)
+	  GUICtrlSetData($FailsPerHourLabel, $failshour)
+	  GUICtrlSetData($DiessaPerHourLabel, $diessahour)
+	  GUICtrlSetData($RinPerHourLabel, $rinhour)
+	  GUICtrlSetData($CharPerHourLabel, $charhour)
+   Else
+	  $successhour = $success
+	  $failshour = $fails
+	  $diessahour = $diessa
+	  $rinhour = $rin
+	  $charhour = $char
+	  GUICtrlSetData($RunsPerHourLabel, $successhour)
+	  GUICtrlSetData($FailsPerHourLabel, $failshour)
+	  GUICtrlSetData($DiessaPerHourLabel, $diessahour)
+	  GUICtrlSetData($RinPerHourLabel, $rinhour)
+	  GUICtrlSetData($CharPerHourLabel, $charhour)
+   EndIf
+EndFunc
 
 Func Kill()
 $stuck = 0
