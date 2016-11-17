@@ -208,12 +208,6 @@ PickUpLoot()
 EndFunc
 
 
-Func GoDungeonLock()
-   $Lock = GetNearestSignPostToAgent(-2)
-   GoToSignpost($Lock)
-EndFunc
-
-
 Func UseSkills()
 
 For $i = 1 to 8
@@ -228,15 +222,6 @@ For $i = 1 to 8
  	 EndIf
 Next
 EndFunc
-
-
-Func DungeonKeyPickUp()
-local $DungeonKey = 54
-TargetNearestItem()
-Move(DllStructGetData($DungeonKey, 'X'), DllStructGetData($DungeonKey, 'Y'), 100)
-PickUpItem($DungeonKey)
-EndFunc
-
 
 
 Func PickUpLoot()
@@ -353,11 +338,6 @@ Func GoNearestNPCToCoords($x, $y)
  Func MoveEx($x, $y, $random = 150)
 	Move($x, $y, $random)
  EndFunc
-
-
- Func GetParam($name)
-	Return InputBox("Character Name", "Enter Your Charcter Name : " & $name)
-EndFunc
 
 
 Func RndTravel($aMapID)
