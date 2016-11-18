@@ -231,11 +231,11 @@ Func UpdatePerHour()
 	  $diessahour = $diessa/$hourcounter
 	  $rinhour = $rin/$hourcounter
 	  $charhour = $char/$hourcounter
-	  GUICtrlSetData($RunsPerHourLabel, $successhour)
-	  GUICtrlSetData($FailsPerHourLabel, $failshour)
-	  GUICtrlSetData($DiessaPerHourLabel, $diessahour)
-	  GUICtrlSetData($RinPerHourLabel, $rinhour)
-	  GUICtrlSetData($CharPerHourLabel, $charhour)
+	  GUICtrlSetData($RunsPerHourLabel, Round($successhour, 3))
+	  GUICtrlSetData($FailsPerHourLabel, Round($failshour, 3))
+	  GUICtrlSetData($DiessaPerHourLabel, Round($diessahour, 3))
+	  GUICtrlSetData($RinPerHourLabel, Round($rinhour, 3))
+	  GUICtrlSetData($CharPerHourLabel, Round($charhour, 3)
    Else
 	  $successhour = $success
 	  $failshour = $fails
