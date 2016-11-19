@@ -143,6 +143,7 @@ Sleep(GetPing())
 GoNearestNPCToCoords(-18250,-8649)
 Dialog(0x00000084)
 Farm()
+Resign()
 RndTravel(648)
 EndFunc
 
@@ -236,7 +237,7 @@ Func UpdatePerHour()
 	  GUICtrlSetData($FailsPerHourLabel, Round($failshour, 3))
 	  GUICtrlSetData($DiessaPerHourLabel, Round($diessahour, 3))
 	  GUICtrlSetData($RinPerHourLabel, Round($rinhour, 3))
-	  GUICtrlSetData($CharPerHourLabel, Round($charhour, 3)
+	  GUICtrlSetData($CharPerHourLabel, Round($charhour, 3))
    Else
 	  $successhour = $success
 	  $failshour = $fails
