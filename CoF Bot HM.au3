@@ -144,7 +144,6 @@ Sleep(GetPing())
 GoNearestNPCToCoords(-18250,-8649)
 Dialog(0x00000084)
 Farm()
-Resign()
 RndTravel(648)
 EndFunc
 
@@ -200,7 +199,7 @@ Func UpdateTimer()
    $TimerDiff = Round((TimerDiff($Timer))/1000) ;Time in seconds
    $TimerSum = $TimerSum + $TimerDiff
    GUICtrlSetData($TimerLabel, $TimerDiff)
-If $success=1 and $fails = 0 Then
+If ($success=1 and $fails = 0) Or ($success=1 and $fails=1) Then
 	  $TimerMin = $TimerDiff
 	  GUICtrlSetData($TimerMinLabel, $TimerMin)
 	  $TimerMax = $TimerDiff
