@@ -361,6 +361,28 @@ Func CanPickUp($item)
 		Return True
     ElseIf $r = 2624 Then ; golden items
 		Return True
+
+		;Tomes
+	ElseIf $id = 21804 Then ;Ritualist
+		Return True
+    ElseIf $id = 21801 Then ;Warrior
+		Return True
+    ElseIf $id = 21799 Then ;Elementalist
+		Return True
+    ElseIf $id = 21803 Then ;Dervish
+		Return True
+    ElseIf $id = 21805 Then ;Paragon
+		Return True
+    ElseIf $id = 21798 Then ;Necromancer
+		Return True
+    ElseIf $id = 21800 Then ;Monk
+		Return True
+    ElseIf $id = 21802 Then ;Ranger
+		Return True
+    ElseIf $id = 21797 Then ;Mesmer
+		Return True
+    ElseIf $id = 21796 Then ;Assassin
+		Return True
 	EndIf
 	Return False
 EndFunc
