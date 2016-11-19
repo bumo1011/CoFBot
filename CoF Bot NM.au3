@@ -130,6 +130,14 @@ If Not $RenderingEnabled Then ClearMemory()
 If $firstRun = 0 Then
 Disp("Travel To Doomlore Shrine")
 RndTravel(648)
+GoNearestNPCToCoords(-19086,17999)
+Dialog(0x00832105)
+Sleep(300)
+Dialog(0x00000088)
+Disp("Loading CoF")
+WaitMapLoading()
+MoveTo(-19300,-8397)
+WaitMapLoading()
 EndIf
 $firstRUn = 1
 GoNearestNPCToCoords(-19086,17999)
@@ -143,7 +151,11 @@ Sleep(GetPing())
 GoNearestNPCToCoords(-18250,-8649)
 Dialog(0x00000084)
 Farm()
-RndTravel(648)
+Resign()
+Do
+Sleep(10)
+until GetIsDead(-2)
+ReturnToOutpost()
 EndFunc
 
 
