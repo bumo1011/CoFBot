@@ -55,7 +55,7 @@ $GuiW = 400
 $WinX = (@desktopWidth/2) - ($GuiW/2)
 $WinY = (@DesktopHeight/2) - ($GuiH/2)
 
-$Form1 = GUICreate("Cathedral Of Flame", $GuiW, $GuiH, $WinX, $WinY)
+$Form1 = GUICreate("Cathedral Of Flame - Hardmode", $GuiW, $GuiH, $WinX, $WinY)
 $bRun = GUICtrlCreateButton("Start", 40, 45, 169, 25)
 $Label2 = GUICtrlCreateLabel("Pause", 50, 18, 152, 25, $SS_CENTER)
 $Checkbox = GUICtrlCreateCheckbox("Disable Rendering", 8, 98, 129, 17)
@@ -174,6 +174,7 @@ MoveTo(-14665,-3696)
 Kill()
 MoveTo(-13022,-2448)
 MoveTo(-12344,-1556)
+Kill()
 Disp("Farming Group 7")
 MoveTo(-10866,8)
 Kill()
@@ -344,6 +345,8 @@ Func CanPickUp($item)
 	ElseIf $id = 929 Then ;glitzer
 		Return True
 	ElseIf $id = 921 Then ;Knochen
+		Return True
+    ElseIf $r = 2624 Then ; golden items
 		Return True
 	EndIf
 	Return False
