@@ -139,9 +139,9 @@ Dialog(0x00000088)
 Disp("Loading CoF")
 WaitMapLoading()
 $Timer = TimerInit()
-Sleep(GetPing())
-GoNearestNPCToCoords(-18250,-8649)
-Dialog(0x00000084)
+;Sleep(GetPing())
+;GoNearestNPCToCoords(-18250,-8649) Beacon only used for title < 8
+;Dialog(0x00000084)
 Farm()
 RndTravel(648)
 EndFunc
@@ -259,7 +259,7 @@ Do
    $distance = GetDistance($target)
    ChangeTarget($target)
    UseSkills()
-Until DllStructGetData($target, 'HP') = 0 Or GetDistance($target, -2) > 1500 or $Stuck == 10
+Until DllStructGetData($target, 'HP') = 0 Or GetDistance($target, -2) > 1500 or $Stuck == 15
 PickUpLoot()
 EndFunc
 

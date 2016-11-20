@@ -261,7 +261,7 @@ Do
    $distance = GetDistance($target)
    ChangeTarget($target)
    UseSkills()
-Until DllStructGetData($target, 'HP') = 0 Or GetDistance($target, -2) > 1500 or $Stuck == 10
+Until DllStructGetData($target, 'HP') = 0 Or GetDistance($target, -2) > 1500 or $Stuck == 15
 PickUpLoot()
 EndFunc
 
