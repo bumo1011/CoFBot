@@ -235,7 +235,7 @@ Func UpdatePerHour()
 	  GUICtrlSetData($FailsPerHourLabel, Round($failshour, 3))
 	  GUICtrlSetData($DiessaPerHourLabel, Round($diessahour, 3))
 	  GUICtrlSetData($RinPerHourLabel, Round($rinhour, 3))
-	  GUICtrlSetData($CharPerHourLabel, Round($charhour, 3)
+	  GUICtrlSetData($CharPerHourLabel, Round($charhour, 3))
    Else
 	  $successhour = $success
 	  $failshour = $fails
