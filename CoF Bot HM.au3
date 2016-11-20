@@ -35,6 +35,8 @@ Global $diessahour = 0
 Global $rinhour = 0
 Global $charhour = 0
 Global $hourcounter = 0
+Global $diessamin1 = 0
+Global $diessamin2 = 0
 
 $aCharName = ""
 
@@ -85,8 +87,12 @@ GUICtrlCreateLabel("/hour:", 180,210, 129, 17)
 Global Const $CharPerHourLabel = GUICtrlCreateLabel($charhour, 252, 210, 129, 17)
 GUICtrlCreateLabel("LastTime:", 8,230,80,17)
 Global Const $TimerLabel = GUICtrlCreateLabel($Timer, 80, 230, 50, 17)
+GUICtrlCreateLabel("Diessa < min:", 180,230, 129, 17)
+Global Const $DiessaMin1Label = GUICtrlCreateLabel($diessamin1, 252, 230, 129, 17)
 GUICtrlCreateLabel("TimeMin:", 8,250,80,17)
 Global Const $TimerMinLabel = GUICtrlCreateLabel($TimerMin, 80, 250, 50, 17)
+GUICtrlCreateLabel("Diessa >= min:", 180,250, 129, 17)
+Global Const $DiessaMin2Label = GUICtrlCreateLabel($diessamin2, 252, 250, 129, 17)
 GUICtrlCreateLabel("TimeMax:", 8,270,80,17)
 Global Const $TimerMaxLabel = GUICtrlCreateLabel($TimerMax, 80, 270, 50, 17)
 GUICtrlCreateLabel("TimeAvg:", 8,290,80,17)
@@ -334,6 +340,13 @@ Func CanPickUp($item)
 	ElseIf $id = 24353 Then
 		$diessa += 1
 		GUICtrlSetData($DiessaLabel, $diessa)
+		If TimerDiff($Timer) < 60000 Then
+		   $diessamin1 += 1
+		   GUICtrlSetData($DiessaMin1Label, $diessamin1)
+		Else
+		   $diessamin2 += 1
+		   GUICtrlSetData($DiessaMin2Label, $diessamin2)
+	    EndIf
 		Return True
         ElseIf $id = 24354 Then
 		$rin += 1
