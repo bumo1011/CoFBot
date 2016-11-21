@@ -37,6 +37,7 @@ Global $charhour = 0
 Global $hourcounter = 0
 Global $diessamin1 = 0
 Global $diessamin2 = 0
+Global $Array_pscon[39]=[910, 5585, 6366, 6375, 22190, 24593, 28435, 30855, 31145, 35124, 36682, 6376, 21809, 21810, 21813, 36683, 21492, 21812, 22269, 22644, 22752, 28436,15837, 21490, 30648, 31020, 6370, 21488, 21489, 22191, 26784, 28433, 5656, 18345, 21491, 37765, 21833, 28433, 28434]
 
 $aCharName = ""
 
@@ -358,8 +359,17 @@ Func CanPickUp($item)
 		Return True
 	ElseIf $id = 921 Then ;Knochen
 		Return True
+    ElseIf CheckArrayPscon($id)Then ; ==== Pcons ==== or all event items
+        Return True
 	EndIf
 	Return False
+EndFunc
+
+
+Func CheckArrayPscon($lModelID)
+    For $p = 0 To (UBound($Array_pscon) -1)
+        If ($lModelID == $Array_pscon[$p]) Then Return True
+    Next
 EndFunc
 
 
